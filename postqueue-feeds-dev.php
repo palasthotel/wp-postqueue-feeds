@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       Postqueue Feeds (DEV)
+ * Plugin Name: Postqueue Feeds (DEV)
  * Plugin URI:        https://github.com/palasthotel/postqueue-feeds
  * Description:       Development wrapper. Loads the plugin from public/, which is what ships to wordpress.org. Do not deploy this file.
  * Version:           0.0.0-dev
@@ -15,6 +15,10 @@
  */
 
 defined( 'WPINC' ) || exit;
+
+// "Plugin Name:" is followed by a single space on purpose, unlike the aligned fields
+// below: the shared PR check looks for the literal "Plugin Name: Postqueue Feeds (DEV)"
+// in the payload, and would not recognise this file with the alignment.
 
 // The version above is deliberately not a real one and nothing syncs it. This file never
 // ships, so its version means nothing - and while the release pipeline did insist that it
