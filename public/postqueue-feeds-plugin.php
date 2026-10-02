@@ -5,10 +5,10 @@
  * Description:       Provides an RSS feed for every stored postqueue.
  * Version:           2.0.0
  * Requires at least: 6.6
- * Tested up to:      7.0.2
+ * Tested up to:      7.1.2
  * Requires PHP:      7.4
  * Requires Plugins:  postqueue
- * Author:            Palasthotel <rezeption@palasthotel.de> (Jana Marie Eggebrecht, Edward Bock)
+ * Author:            Palasthotel <webmaster@palasthotel.de>
  * Author URI:        https://palasthotel.de
  * License:           GPL-3.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.html
