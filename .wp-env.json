@@ -2,7 +2,7 @@
 	"port": 8890,
 	"mappings": {
 		"wp-content/plugins/postqueue-feeds": "./public",
-		"wp-content/plugins/postqueue": "../ph-postqueue/public"
+		"wp-content/plugins/postqueue": "../wp-postqueue/public"
 	},
 	"config": {
 		"WP_DEBUG": true,

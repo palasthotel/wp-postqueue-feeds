@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Postqueue Feeds (DEV)
- * Plugin URI:        https://github.com/palasthotel/postqueue-feeds
+ * Plugin URI:        https://github.com/palasthotel/wp-postqueue-feeds
  * Description:       Development wrapper. Loads the plugin from public/, which is what ships to wordpress.org. Do not deploy this file.
  * Version:           0.0.0-dev
  * Requires at least: 6.6

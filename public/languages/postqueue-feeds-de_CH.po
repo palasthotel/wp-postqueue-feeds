@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Postqueue Feeds\n"
-"Report-Msgid-Bugs-To: https://github.com/palasthotel/postqueue-feeds/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/palasthotel/wp-postqueue-feeds/issues\n"
 "POT-Creation-Date: 2026-08-04T22:11:36+00:00\n"
 "PO-Revision-Date: 2026-08-05 00:15+0200\n"
 "Last-Translator: Palasthotel <cybertreff@palasthotel.de>\n"

@@ -77,7 +77,7 @@ There is nothing to build: the plugin is plain PHP with no assets and no depende
 npx @wordpress/env start      # http://localhost:8890, admin / password
 ```
 
-The bundled `.wp-env.json` also mounts `../ph-postqueue/public`, because this plugin
+The bundled `.wp-env.json` also mounts `../wp-postqueue/public`, because this plugin
 does nothing without Postqueue. Clone
 [palasthotel/ph-postqueue](https://github.com/palasthotel/ph-postqueue) next to this
 repository, or edit the path.
