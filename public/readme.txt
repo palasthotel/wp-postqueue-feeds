@@ -6,7 +6,7 @@ Requires at least: 6.6
 Tested up to: 7.1.2
 Requires PHP: 7.4
 Requires Plugins: postqueue
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPL-3.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -55,6 +55,11 @@ No, that address is gone as of 2.0.0. The rule behind it matched every `.xml` ad
 Every published post in the queue, in the queue's order, with no paging limit. Scheduled posts and drafts are left out.
 
 == Changelog ==
+
+= 2.0.1 =
+**Bug Fixes**
+* do not run the feed template when it is requested directly (91b7f60)
+* release (5b4071a)
 
 = 2.0.0 =
 **⚠ BREAKING CHANGES**
