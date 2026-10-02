@@ -5,6 +5,10 @@
  * @package WordPress
  */
 
+// Loaded by Feed::add_feed() only. Requested on its own, it would stop at the first
+// WordPress function with a fatal error that names the server path.
+defined( 'ABSPATH' ) || exit;
+
 header('Content-Type: ' . feed_content_type('rss2') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
