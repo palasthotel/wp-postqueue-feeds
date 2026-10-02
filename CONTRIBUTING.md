@@ -58,7 +58,6 @@ repository-only.
 | `public/public-functions.php` | the public API |
 | `public/readme.txt` | the wordpress.org listing |
 | `postqueue-feeds-dev.php` | development wrapper, loads `public/`; never deployed |
-| `bin/` | release helper scripts |
 
 **`public/postqueue-feeds-plugin.php` must keep its name**, unlovely as it is. WordPress
 identifies an installed plugin by `<directory>/<main file>` and stores exactly that pair
@@ -88,8 +87,14 @@ plugin flushes them on activation, but that hook keys off
 `public/postqueue-feeds-plugin.php` and WordPress activates the dev wrapper instead — so
 in development it does not fire.
 
-`bash bin/pack.sh` stages the payload in `build/postqueue-feeds/` and zips it to
-`postqueue-feeds.zip` — the same payload the release deploys.
+To stage the payload in `build/postqueue-feeds/` and zip it to `postqueue-feeds.zip` —
+the same payload the release deploys — run the shared script from
+[palasthotel/github-workflows](https://github.com/palasthotel/github-workflows), checked
+out next to this repository:
+
+```sh
+SLUG=postqueue-feeds bash ../github-workflows/wp-plugin/bin/pack.sh
+```
 
 ## Versions
 
@@ -103,8 +108,8 @@ done by hand; just leave `Stable tag:` and the `== Changelog ==` entries alone.
 
 ## Checks
 
-Every PR runs `php -l` against PHP 7.4, 8.2, 8.3 and 8.4, and packs the plugin so a
-broken `bin/pack.sh` surfaces in the pull request rather than in a release.
+Every PR runs `php -l` against PHP 7.4, 8.2, 8.3 and 8.4, packs the plugin and checks the
+payload, and checks the version carriers agree.
 
 The plugin declares `Requires at least: 6.6`. Two things depend on it: the
 `Requires Plugins:` header, which WordPress only understands from 6.5 on, and

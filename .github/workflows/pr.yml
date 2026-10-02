@@ -9,76 +9,16 @@ permissions:
   contents: read
 
 jobs:
-  php-lint:
-    name: PHP syntax check (${{ matrix.php-version }})
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version: ["7.4", "8.2", "8.3", "8.4"]
-    steps:
-      - uses: actions/checkout@v6
-
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php-version }}
-          coverage: none
-
-      - name: Lint PHP files
-        run: |
-          find . -name '*.php' -print0 | xargs -0 -r -n1 php -l
-
-  pack:
-    name: Pack plugin
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Pack
-        run: bash bin/pack.sh
-
-      # The payload is what wordpress.org serves, so assert both what has to be in it
-      # and what must not.
-      - name: Assert the payload is clean
-        run: |
-          test -f build/postqueue-feeds/postqueue-feeds-plugin.php
-          test -f build/postqueue-feeds/public-functions.php
-          test -f build/postqueue-feeds/readme.txt
-          test -f build/postqueue-feeds/LICENSE
-          test -f build/postqueue-feeds/inc/feed.php
-          test -f build/postqueue-feeds/inc/rewrite.php
-          test -f build/postqueue-feeds/inc/postqueue-screen.php
-          test -f build/postqueue-feeds/template/postqueue-feed-rss2.php
-          test -f build/postqueue-feeds/languages/postqueue-feeds-de_DE.mo
-          test ! -e build/postqueue-feeds/bin
-          test ! -e build/postqueue-feeds/.github
-          test ! -e build/postqueue-feeds/CONTRIBUTING.md
-          test ! -e build/postqueue-feeds/version.txt
-
-      # Checked two ways on purpose. By name, because the wrapper declares a plugin
-      # header of its own and shipping it would put a second "Postqueue Feeds (DEV)"
-      # entry in everybody's plugin list. And by header, because a file name is easy to
-      # change while the (DEV) marker travels with the file.
-      - name: Assert the dev wrapper is not shipped
-        run: |
-          test ! -e build/postqueue-feeds/postqueue-feeds-dev.php
-          if grep -q '(DEV)' build/postqueue-feeds/postqueue-feeds-plugin.php; then
-            echo "::error::the payload main file is the development wrapper"
-            exit 1
-          fi
-
-  versions:
-    name: Version carriers agree
-    # Not on the release PR. release-please pushes it with only version.txt bumped, and
-    # update-plugin-version.yml syncs the other three carriers in a second push - so
-    # checking the first head commit is guaranteed to fail and paint a red check on
-    # every release PR before it turns green. The release job runs the same script
-    # anyway, where a mismatch aborts the deploy instead of merely reporting it.
-    if: ${{ ! startsWith(github.head_ref, 'release-please--') }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-
-      # Catches a hand-edited version long before a tag is pushed.
-      - name: Check version numbers
-        run: VERSION="$(head -n1 version.txt | tr -d '[:space:]')" bash bin/version-checker.sh
+  checks:
+    uses: palasthotel/github-workflows/.github/workflows/wp-plugin-pr.yml@v1
+    with:
+      slug: postqueue-feeds
+      dev-plugin-name: Postqueue Feeds (DEV)
+      required-files: |
+        public-functions.php
+        inc/feed.php
+        inc/rewrite.php
+        inc/postqueue-screen.php
+        template/postqueue-feed-rss2.php
+        languages/postqueue-feeds.pot
+        languages/postqueue-feeds-de_DE.mo

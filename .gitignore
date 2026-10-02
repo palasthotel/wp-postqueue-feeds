@@ -1,13 +1,11 @@
-# bin/pack.sh stages the payload here; the release rsyncs from it into SVN
+# pack.sh from palasthotel/github-workflows stages the payload here; the release
+# rsyncs from it into SVN
 /build
 /postqueue-feeds.zip
 
 # wp-env
 /.wp-env.override.json
 
-*.sass-cache*
-.htaccess
-.vagrant
 .idea
 
 # OS Stuff
