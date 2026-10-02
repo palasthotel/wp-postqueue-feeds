@@ -3,7 +3,7 @@ Contributors: palasthotel, janaeggebrecht
 Donate link: https://palasthotel.de/
 Tags: rss, feed, postqueue, syndication, curated
 Requires at least: 6.6
-Tested up to: 7.0.2
+Tested up to: 7.1.2
 Requires PHP: 7.4
 Requires Plugins: postqueue
 Stable tag: 2.0.0
@@ -55,6 +55,17 @@ No, that address is gone as of 2.0.0. The rule behind it matched every `.xml` ad
 Every published post in the queue, in the queue's order, with no paging limit. Scheduled posts and drafts are left out.
 
 == Changelog ==
+
+= 2.0.0 =
+**⚠ BREAKING CHANGES**
+* a queue's feed is no longer served at <slug>.xml. That address was documented in the README and is gone with the rule behind it. Use /feed/<slug>/ or ?feed=<slug>.
+
+**Features**
+* show each queue's feed address on the Postqueues screen
+
+**Bug Fixes**
+* make the feed work as soon as the plugin is activated
+* stop answering wp-sitemap.xml with a feed
 
 = 1.0 =
 * First release
