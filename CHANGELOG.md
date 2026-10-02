@@ -5,6 +5,14 @@ All notable changes to this project are documented here. The format follows
 on the file is maintained by
 [release-please](https://github.com/googleapis/release-please) — do not edit it by hand.
 
+## [2.0.1](https://github.com/palasthotel/wp-postqueue-feeds/compare/v2.0.0...v2.0.1) (2026-10-02)
+
+
+### Bug Fixes
+
+* do not run the feed template when it is requested directly ([91b7f60](https://github.com/palasthotel/wp-postqueue-feeds/commit/91b7f601c6cd2a055c78c8d67e15ab61d624d2f9))
+* release ([5b4071a](https://github.com/palasthotel/wp-postqueue-feeds/commit/5b4071af2dd16a00ef2734160c97227e2da4f5c6))
+
 ## [2.0.0](https://github.com/palasthotel/postqueue-feeds/compare/v1.0.0...v2.0.0) (2026-08-04)
 
 

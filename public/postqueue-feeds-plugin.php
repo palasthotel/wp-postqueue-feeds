@@ -3,7 +3,7 @@
  * Plugin Name:       Postqueue Feeds
  * Plugin URI:        https://wordpress.org/plugins/postqueue-feeds/
  * Description:       Provides an RSS feed for every stored postqueue.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Requires at least: 6.6
  * Tested up to:      7.1.2
  * Requires PHP:      7.4
