@@ -5,7 +5,7 @@
  * Description:       Provides an RSS feed for every stored postqueue.
  * Version:           2.0.1
  * Requires at least: 6.6
- * Tested up to:      7.1.2
+ * Tested up to:      7.1
  * Requires PHP:      7.4
  * Requires Plugins:  postqueue
  * Author:            Palasthotel <webmaster@palasthotel.de>

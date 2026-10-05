@@ -3,7 +3,7 @@ Contributors: palasthotel, janaeggebrecht
 Donate link: https://palasthotel.de/
 Tags: rss, feed, postqueue, syndication, curated
 Requires at least: 6.6
-Tested up to: 7.1.2
+Tested up to: 7.1
 Requires PHP: 7.4
 Requires Plugins: postqueue
 Stable tag: 2.0.1
