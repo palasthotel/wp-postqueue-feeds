@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 header('Content-Type: ' . feed_content_type('rss2') . '; charset=' . get_option('blog_charset'), true);
 $more = 1;
 
-echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>';
+echo '<?xml version="1.0" encoding="' . esc_attr( get_option( 'blog_charset' ) ) . '"?' . '>';
 
 /**
  * Fires between the xml and rss tags in a feed.
@@ -49,7 +49,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 	<?php // get_feed_build_date() is what core has used here since 5.2. The hand-rolled
 	// version this replaces fell back to date( 'r' ), which reads the server timezone
 	// rather than the site's. ?>
-	<lastBuildDate><?php echo get_feed_build_date( 'r' ); ?></lastBuildDate>
+	<lastBuildDate><?php echo esc_html( get_feed_build_date( 'r' ) ); ?></lastBuildDate>
 	<language><?php bloginfo_rss( 'language' ); ?></language>
 	<sy:updatePeriod><?php
 		$duration = 'hourly';
@@ -62,7 +62,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 		 * @param string $duration The update period. Accepts 'hourly', 'daily', 'weekly', 'monthly',
 		 *                         'yearly'. Default 'hourly'.
 		 */
-		echo apply_filters( 'rss_update_period', $duration );
+		echo esc_html( apply_filters( 'rss_update_period', $duration ) );
 	?></sy:updatePeriod>
 	<sy:updateFrequency><?php
 		$frequency = '1';
@@ -75,7 +75,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 		 * @param string $frequency An integer passed as a string representing the frequency
 		 *                          of RSS updates within the update period. Default '1'.
 		 */
-		echo apply_filters( 'rss_update_frequency', $frequency );
+		echo esc_html( apply_filters( 'rss_update_frequency', $frequency ) );
 	?></sy:updateFrequency>
 	<?php
 	/**
@@ -93,7 +93,7 @@ do_action( 'rss_tag_pre', 'rss2' );
 <?php if ( get_comments_number() || comments_open() ) : ?>
 		<comments><?php comments_link_feed(); ?></comments>
 <?php endif; ?>
-		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
+		<pubDate><?php echo esc_html( mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ) ); ?></pubDate>
 		<dc:creator><![CDATA[<?php the_author() ?>]]></dc:creator>
 		<?php the_category_rss('rss2') ?>
 
@@ -102,16 +102,21 @@ do_action( 'rss_tag_pre', 'rss2' );
 		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>
 <?php else : ?>
 		<description><![CDATA[<?php the_excerpt_rss(); ?>]]></description>
-	<?php $content = get_the_content_feed('rss2'); ?>
+	<?php
+	// HTML on purpose, as in core's feed-rss2.php: get_the_content_feed() has run the
+	// the_content filters and turned "]]>" into "]]&gt;", so it cannot leave the CDATA
+	// section. wp_kses_post() would strip the embeds (iframes) feed readers get from core.
+	$content = get_the_content_feed( 'rss2' );
+	?>
 	<?php if ( strlen( $content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<?php echo $content; ?>]]></content:encoded>
+		<content:encoded><![CDATA[<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- HTML for the CDATA section, prepared by get_the_content_feed() like in core's feed-rss2.php ?>]]></content:encoded>
 	<?php else : ?>
 		<content:encoded><![CDATA[<?php the_excerpt_rss(); ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
 <?php if ( get_comments_number() || comments_open() ) : ?>
 		<wfw:commentRss><?php echo esc_url( get_post_comments_feed_link(null, 'rss2') ); ?></wfw:commentRss>
-		<slash:comments><?php echo get_comments_number(); ?></slash:comments>
+		<slash:comments><?php echo absint( get_comments_number() ); ?></slash:comments>
 <?php endif; ?>
 <?php rss_enclosure(); ?>
 	<?php
