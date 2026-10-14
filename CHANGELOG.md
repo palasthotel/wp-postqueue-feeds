@@ -5,6 +5,17 @@ All notable changes to this project are documented here. The format follows
 on the file is maintained by
 [release-please](https://github.com/googleapis/release-please) — do not edit it by hand.
 
+## [3.0.0](https://github.com/palasthotel/wp-postqueue-feeds/compare/v2.0.1...v3.0.0) (2026-10-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires PHP 8.0 or newer
+
+### Features
+
+* drop support for PHP 7.4 ([9d92d4e](https://github.com/palasthotel/wp-postqueue-feeds/commit/9d92d4e0ce6adecc32f433f3b85ddcbb5b0d0ed7))
+
 ## [2.0.1](https://github.com/palasthotel/wp-postqueue-feeds/compare/v2.0.0...v2.0.1) (2026-10-02)
 
 
