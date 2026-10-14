@@ -12,9 +12,6 @@ jobs:
   checks:
     uses: palasthotel/github-workflows/.github/workflows/wp-plugin-pr.yml@v1
     with:
-      # Plugin Check reports errors on this plugin - see https://github.com/palasthotel/wp-postqueue-feeds/issues/6.
-      # Remove this line once they are fixed.
-      plugin-check: false
       slug: postqueue-feeds
       dev-plugin-name: Postqueue Feeds (DEV)
       required-files: |
