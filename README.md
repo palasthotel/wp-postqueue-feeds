@@ -7,7 +7,7 @@ lets an editor arrange posts into a hand-sorted list; this plugin publishes each
 lists as an RSS feed, keeping the order intact.
 
 - **wordpress.org:** https://wordpress.org/plugins/postqueue-feeds/
-- **Requires:** WordPress 6.6, PHP 7.4, and the Postqueue plugin
+- **Requires:** WordPress 6.6, PHP 8.0, and the Postqueue plugin
 
 ## Feed addresses
 
